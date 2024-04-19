@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Upload files using Cloudinary Service in MERN stack project</h1>
+      
       <Link to="/">Home</Link> | <Link to="upload">Upload</Link> | <Link to="secure-upload">Secure Upload</Link> 
       | <Link to="/getAllCourses">CourseList-admin</Link> <Link to="/AdminDashboard">AdminDashboard</Link> 
       <br />

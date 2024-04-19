@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import AdminDashboard from './AdminDashboard';
 
 const CourseDetails = () => {
   const { id } = useParams();
@@ -32,7 +33,7 @@ const CourseDetails = () => {
         const deleteURL = `http://localhost:5000/api/videos/deleteOneCourseById/${id}`;
         await axios.delete(deleteURL);
         console.log("Course deleted successfully!");
-        navigate('/getAllCourses'); // Navigate to the course list after successful delete
+        navigate('/getAllCourses');
       } catch (error) {
         console.error('Error deleting course:', error);
       }
@@ -40,7 +41,11 @@ const CourseDetails = () => {
   };
 
   const handleUpdate = () => {
-    navigate(`/updateCourse/${id}`); // Redirect to CourseUpdate component with ID
+    navigate(`/updateCourse/${id}`);
+  };
+
+  const handleQuize = () => {
+    navigate(`/quizeHome`);
   };
 
   if (loading) {
@@ -52,7 +57,10 @@ const CourseDetails = () => {
   }
 
   return (
+    <div>
+    <AdminDashboard />
     <div style={styles.container}>
+      
       <h2>{course?.coursename || 'Course Name N/A'}</h2>
       <p>Course ID: {course?.courseid || 'Course ID N/A'}</p>
       <p>Description: {course?.description || 'Description N/A'}</p>
@@ -70,18 +78,19 @@ const CourseDetails = () => {
       </video>
 
       <div style={styles.buttonContainer}>
-        <button style={styles.button} onClick={() => navigate(`/nextPage/${id}`)}>Next</button>
         <button style={styles.button} onClick={handleDelete}>Delete</button>
         <button style={styles.button} onClick={handleUpdate}>Update</button>
+        <button style={styles.button} onClick={handleQuize}>Quize</button>
       </div>
+    </div>
     </div>
   );
 };
 
 const styles = {
   container: {
-    margin: '20px',
-    padding: '20px',
+    margin: '80px 20px 20px 20px', // Added top margin to account for the navbar
+    padding: '20px 400px',
     border: '1px solid #ccc',
     borderRadius: '8px',
   },

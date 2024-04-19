@@ -14,6 +14,8 @@ import CourseListAdmin from './components/CourseListAdmin';
 import CourseDetails from './components/CourseDetails';
 import CourseUpdate from './components/CourseUpdate';
 import AdminDashboard from './components/AdminDashboard'
+import QuizHome from './components/QuizeHome';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="/course/:id" element={<CourseDetails />} />
       <Route path="/updateCourse/:id" element={<CourseUpdate />} />
       <Route path="/AdminDashboard" element={<AdminDashboard />} />
+      <Route path="/quizeHome" element={<QuizHome />} />
     </Route>
   )
 );
