@@ -1,7 +1,14 @@
 import React from 'react';
 import AdminDashboard from './AdminDashboard';
+import { useNavigate } from 'react-router-dom';
 
 const QuizHome = () => {
+    const navigate = useNavigate();
+
+    const handleStartQuiz = () => {
+        navigate(`/questions`);
+      };
+
   return (
     <div style={styles.container}>
     <AdminDashboard />
@@ -12,10 +19,7 @@ const QuizHome = () => {
       <p style={styles.subtitle}>Test your knowledge and have fun!</p>
       <button 
         style={styles.playButton}
-        onClick={() => {
-          // Navigate to quiz or start quiz logic
-          console.log('Play button clicked');
-        }}
+        onClick={handleStartQuiz}
       >
         Start Quiz
       </button>
