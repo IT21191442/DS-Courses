@@ -1,8 +1,13 @@
+import { useParams } from 'react-router-dom';
 import React, { useState } from 'react';
 import AdminDashboard from './AdminDashboard';
 
-const questions = [
-  //Java questions
+
+const Questions = () => {
+  const { id } = useParams();
+
+  // Java Questions
+  const javaQuestions = [
     {
       id: 1,
       question: 'What is Java?',
@@ -63,8 +68,10 @@ const questions = [
       options: ['Throwable', 'Error', 'Exception', 'RuntimeException'],
       answer: 'Throwable',
     },
+  ];
 
-    //python questions
+  // Python Questions
+  const pythonQuestions = [
     {
       id: 1,
       question: 'What is Python?',
@@ -126,69 +133,114 @@ const questions = [
       answer: 'True',
     },
   ];
+
   
 
-  const JavaQuiz = ({ courseId }) => {
-    // Filter questions based on courseId
-    const filteredQuestions = questions.filter(question => !question.courseId || question.courseId === courseId);
-  
-    const [currentPage, setCurrentPage] = useState(1);
-    const questionsPerPage = 1; // Change this to 10 for 10 questions per page
-    const totalPages = Math.ceil(filteredQuestions.length / questionsPerPage);
-  
+  const questions = id === 'JV3070' ? javaQuestions : pythonQuestions;
 
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(prev => prev + 1);
-    }
-  };
+  const [selectedOptions, setSelectedOptions] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const questionsPerPage = 2;
+  const totalPages = Math.ceil(questions.length / questionsPerPage);
 
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(prev => prev - 1);
-    }
+  const handleOptionChange = (questionId, option) => {
+    setSelectedOptions({
+      ...selectedOptions,
+      [questionId]: option,
+    });
   };
 
   const renderQuestions = () => {
     const startIndex = (currentPage - 1) * questionsPerPage;
     const endIndex = startIndex + questionsPerPage;
-    const currentQuestions = questions.slice(startIndex, endIndex);
 
-    return currentQuestions.map((question, index) => (
-      <div key={question.id}>
-        <p>{question.question}</p>
-        {question.options.map((option, optionIndex) => (
-          <div key={optionIndex}>
-            <input
-              type="radio"
-              id={`${question.id}-${optionIndex}`}
-              name={`question-${question.id}`}
-              value={option}
-            />
-            <label htmlFor={`${question.id}-${optionIndex}`}>{option}</label>
-          </div>
-        ))}
+    return questions.slice(startIndex, endIndex).map((questionObj, index) => (
+      <div key={index} style={styles.question}>
+        <strong>Question {questionObj.id}:</strong> {questionObj.question}
+        <ul style={styles.optionsList}>
+          {questionObj.options.map((option, optionIndex) => (
+            <li key={optionIndex}>
+              <label>
+                <input
+                  type="radio"
+                  name={`question${questionObj.id}`}
+                  value={option}
+                  checked={selectedOptions[questionObj.id] === option}
+                  onChange={() => handleOptionChange(questionObj.id, option)}
+                />
+                {option}
+              </label>
+            </li>
+          ))}
+        </ul>
       </div>
     ));
   };
 
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   return (
-    
-    <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px 500px' }}>
+    <div style={styles.container}>
     <AdminDashboard />
-      <h1>Java Quiz</h1>
-      {renderQuestions()}
-      <div>
-        <button onClick={handlePrevPage} style={{ marginRight: '10px' }}>
-          Prev
-        </button>
-        <button onClick={handleNextPage}>Next</button>
+      <h1>{id === 'JV3070' ? 'Java Questions' : 'Python Questions'}</h1>
+      <div style={styles.questionsContainer}>
+        {renderQuestions()}
       </div>
-      <p>
-        Page {currentPage} of {totalPages}
-      </p>
+      <div style={styles.pagination}>
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
+        <span>{currentPage} / {totalPages}</span>
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
+        {/* <button onClick={() => console.log(selectedOptions)}>Submit</button> */}
+      </div>
+      
     </div>
   );
 };
 
-export default JavaQuiz;
+// Inline styles
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '90vh',
+    backgroundColor: '#f9f9f9',
+    padding: '40px',
+    borderRadius: '15px',
+  },
+  questionsContainer: {
+    width: '80%',
+    maxWidth: '800px',
+    marginTop: '30px',
+  },
+  question: {
+    marginBottom: '20px',
+    padding: '15px',
+    border: '1px solid #ccc',
+    borderRadius: '5px',
+  },
+  optionsList: {
+    listStyleType: 'none',
+    paddingLeft: '20px',
+  },
+  pagination: {
+    marginTop: '20px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+};
+
+
+export default Questions;
