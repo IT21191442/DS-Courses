@@ -1,32 +1,38 @@
 import React from 'react';
 import AdminDashboard from './AdminDashboard';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+
+
 
 const QuizHome = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-    const handleStartQuiz = () => {
-        navigate(`/questions`);
-      };
+  const handleStartQuiz = () => {
+    navigate(`/questions/${id}`);
+    console.log(id);
+  };
 
   return (
     <div style={styles.container}>
-    <AdminDashboard />
+      <AdminDashboard />
       <div style={styles.iconContainer}>
-        <div style={styles.icon}></div> {/* This is the placeholder for the icon */}
+        <div style={styles.icon}></div>
       </div>
       <h1 style={styles.title}>Welcome to QuizTime</h1>
       <p style={styles.subtitle}>Test your knowledge and have fun!</p>
       <button 
         style={styles.playButton}
-        onClick={handleStartQuiz}
+        onClick={() => handleStartQuiz()}
       >
         Start Quiz
       </button>
-      
+     
     </div>
   );
 };
+
+
 
 // Inline styles
 const styles = {

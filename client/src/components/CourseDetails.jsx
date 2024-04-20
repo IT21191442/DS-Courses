@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import AdminDashboard from './AdminDashboard';
 
-const CourseDetails = () => {
+const CourseQuiz = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   
@@ -44,8 +44,8 @@ const CourseDetails = () => {
     navigate(`/updateCourse/${id}`);
   };
 
-  const handleQuize = () => {
-    navigate(`/quizeHome`);
+  const handleStartQuiz = () => {
+    navigate(`/quizeHome/${id}`);
   };
 
   if (loading) {
@@ -58,31 +58,31 @@ const CourseDetails = () => {
 
   return (
     <div>
-    <AdminDashboard />
-    <div style={styles.container}>
-      
-      <h2>{course?.coursename || 'Course Name N/A'}</h2>
-      <p>Course ID: {course?.courseid || 'Course ID N/A'}</p>
-      <p>Description: {course?.description || 'Description N/A'}</p>
-      <p>Sections: {course?.sections || 'Sections N/A'}</p>
+      <AdminDashboard />
+      <div style={styles.container}>
+        
+        <h2>{course?.coursename || 'Course Name N/A'}</h2>
+        <p>Course ID: {course?.courseid || 'Course ID N/A'}</p>
+        <p>Description: {course?.description || 'Description N/A'}</p>
+        <p>Sections: {course?.sections || 'Sections N/A'}</p>
 
-      <img 
-        src={course?.imgUrl || 'Image URL N/A'} 
-        alt={course?.coursename || 'Course Name N/A'} 
-        style={styles.image}
-      />
+        <img 
+          src={course?.imgUrl || 'Image URL N/A'} 
+          alt={course?.coursename || 'Course Name N/A'} 
+          style={styles.image}
+        />
 
-      <video controls style={styles.video}>
-        <source src={course?.videoUrl || ''} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+        <video controls style={styles.video}>
+          <source src={course?.videoUrl || ''} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-      <div style={styles.buttonContainer}>
-        <button style={styles.button} onClick={handleDelete}>Delete</button>
-        <button style={styles.button} onClick={handleUpdate}>Update</button>
-        <button style={styles.button} onClick={handleQuize}>Quize</button>
+        <div style={styles.buttonContainer}>
+          <button style={styles.button} onClick={handleDelete}>Delete</button>
+          <button style={styles.button} onClick={handleUpdate}>Update</button>
+          <button style={styles.button} onClick={handleStartQuiz}>Start Quiz</button>
+        </div>
       </div>
-    </div>
     </div>
   );
 };
@@ -114,4 +114,4 @@ const styles = {
   },
 };
 
-export default CourseDetails;
+export default CourseQuiz;

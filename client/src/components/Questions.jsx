@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AdminDashboard from './AdminDashboard';
 
 const questions = [
+  //Java questions
     {
       id: 1,
       question: 'What is Java?',
@@ -62,13 +63,79 @@ const questions = [
       options: ['Throwable', 'Error', 'Exception', 'RuntimeException'],
       answer: 'Throwable',
     },
+
+    //python questions
+    {
+      id: 1,
+      question: 'What is Python?',
+      options: ['Programming Language', 'Operating System', 'Database', 'Hardware'],
+      answer: 'Programming Language',
+    },
+    {
+      id: 2,
+      question: 'Which keyword is used to define a function in Python?',
+      options: ['func', 'function', 'def', 'define'],
+      answer: 'def',
+    },
+    {
+      id: 3,
+      question: 'Which of the following is not a Python data type?',
+      options: ['int', 'double', 'str', 'list'],
+      answer: 'double',
+    },
+    {
+      id: 4,
+      question: 'How do you start a comment in Python?',
+      options: ['//', '/*', '#', '--'],
+      answer: '#',
+    },
+    {
+      id: 5,
+      question: 'Which of the following is used to loop through a sequence?',
+      options: ['for', 'foreach', 'while', 'loop'],
+      answer: 'for',
+    },
+    {
+      id: 6,
+      question: 'What is the output of `print(3 * "Python")`?',
+      options: ['3Python', 'PythonPythonPython', '3 Python', 'Error'],
+      answer: 'PythonPythonPython',
+    },
+    {
+      id: 7,
+      question: 'Which method is used to remove an item from a list?',
+      options: ['delete()', 'remove()', 'pop()', 'discard()'],
+      answer: 'remove()',
+    },
+    {
+      id: 8,
+      question: 'What is the result of `3 + 2 * 2`?',
+      options: ['7', '10', '9', '6'],
+      answer: '7',
+    },
+    {
+      id: 9,
+      question: 'Which library is used for data visualization in Python?',
+      options: ['matplotlib', 'numpy', 'pandas', 'scipy'],
+      answer: 'matplotlib',
+    },
+    {
+      id: 10,
+      question: 'What is the output of `bool("False")`?',
+      options: ['True', 'False', 'Error', '0'],
+      answer: 'True',
+    },
   ];
   
 
-const JavaQuiz = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const questionsPerPage = 1; // Change this to 10 for 10 questions per page
-  const totalPages = Math.ceil(questions.length / questionsPerPage);
+  const JavaQuiz = ({ courseId }) => {
+    // Filter questions based on courseId
+    const filteredQuestions = questions.filter(question => !question.courseId || question.courseId === courseId);
+  
+    const [currentPage, setCurrentPage] = useState(1);
+    const questionsPerPage = 1; // Change this to 10 for 10 questions per page
+    const totalPages = Math.ceil(filteredQuestions.length / questionsPerPage);
+  
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {

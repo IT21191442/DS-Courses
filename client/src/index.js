@@ -27,8 +27,8 @@ const router = createBrowserRouter(
       <Route path="/course/:id" element={<CourseDetails />} />
       <Route path="/updateCourse/:id" element={<CourseUpdate />} />
       <Route path="/AdminDashboard" element={<AdminDashboard />} />
-      <Route path="/quizeHome" element={<QuizHome />} />
-      <Route path="/questions" element={<Questions />} />
+      <Route path="/quizeHome/:id" element={<QuizHome />} />
+      <Route path="/questions/:id" element={<Questions />} />
     </Route>
   )
 );
