@@ -9,7 +9,6 @@ import {
   Route,
 } from "react-router-dom";
 import Upload from './components/Upload';
-import SecureUpload from './components/SecureUpload';
 import CourseListAdmin from './components/CourseListAdmin';
 import CourseDetails from './components/CourseDetails';
 import CourseUpdate from './components/CourseUpdate';
@@ -22,7 +21,6 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="upload" element={<Upload />} />
-      <Route path="secure-upload" element={<SecureUpload />} />
       <Route path="/getAllCourses" element={<CourseListAdmin />} />
       <Route path="/course/:id" element={<CourseDetails />} />
       <Route path="/updateCourse/:id" element={<CourseUpdate />} />
