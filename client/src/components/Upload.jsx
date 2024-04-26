@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import AdminDashboard from "./AdminDashboard";
 
+
 const Upload = () => {
   const [courseid, setCourseid] = useState("");
   const [coursename, setCoursename] = useState("");
@@ -94,6 +95,7 @@ const Upload = () => {
     <div style={styles.container}>
       <AdminDashboard />
 
+     
       <h2 style={styles.title}>Upload Course</h2>
 
       <form onSubmit={handleSubmit} style={styles.form}>
@@ -228,6 +230,7 @@ const styles = {
     maxWidth: "800px",
     margin: "auto",
     padding: "20px",
+    backgroundColor: "#f9f9f9", // Light gray background color
   },
   title: {
     fontSize: "24px",
@@ -236,6 +239,9 @@ const styles = {
   form: {
     display: "flex",
     flexDirection: "column",
+    outline: "0.5px solid black", // Outline around the form
+    padding: "20px",
+    backgroundColor: "white", // White background color for the form
   },
   formGroup: {
     marginBottom: "20px",

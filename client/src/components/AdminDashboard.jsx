@@ -16,7 +16,8 @@ const SideNav = () => {
         </li>
         <li style={styles.navItem}>
           <Link to="/learner" style={styles.navLink}>Learner</Link>
-        </li>
+        </li><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         <li style={styles.navItem}>
           <Link to="/logout" style={styles.navLink}>Logout</Link>
         </li>

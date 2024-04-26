@@ -132,11 +132,138 @@ const Questions = () => {
       options: ['True', 'False', 'Error', '0'],
       answer: 'True',
     },
+  ]; // PHP Questions
+  const phpQuestions = [
+    {
+      id: 1,
+      question: 'What does PHP stand for?',
+      options: ['Personal Home Page', 'Hypertext Preprocessor', 'Public Hosting Platform', 'Personal Hypertext Processor'],
+      answer: 'Hypertext Preprocessor',
+    },
+    {
+      id: 2,
+      question: 'Which of the following is not a valid PHP variable name?',
+      options: ['$my_variable', '$_myVariable', '$MyVariable', '$my-variable'],
+      answer: '$my-variable',
+    },
+    {
+      id: 3,
+      question: 'Which function is used to redirect the user to a different URL in PHP?',
+      options: ['redirect()', 'location()', 'header()', 'forward()'],
+      answer: 'header()',
+    },
+    {
+      id: 4,
+      question: 'What is the default method for sending form data in PHP?',
+      options: ['GET', 'POST', 'REQUEST', 'SUBMIT'],
+      answer: 'GET',
+    },
+    {
+      id: 5,
+      question: 'Which PHP function is used to open a file?',
+      options: ['open()', 'read()', 'fopen()', 'load()'],
+      answer: 'fopen()',
+    },
+    {
+      id: 6,
+      question: 'How do you get the length of a string in PHP?',
+      options: ['strlen()', 'length()', 'strlength()', 'stringLength()'],
+      answer: 'strlen()',
+    },
+    {
+      id: 7,
+      question: 'Which of the following is used to comment in PHP?',
+      options: ['//', '/* */', '#', '--'],
+      answer: '//',
+    },
+    {
+      id: 8,
+      question: 'Which PHP superglobal variable is used to get the value of form input field?',
+      options: ['$_POST', '$_GET', '$_REQUEST', '$_SERVER'],
+      answer: '$_POST',
+    },
+    {
+      id: 9,
+      question: 'What is the correct way to close a PHP tag?',
+      options: ['?>', '</php>', '<php>', '</?>'],
+      answer: '?>',
+    },
+    {
+      id: 10,
+      question: 'What is the correct way to start a PHP block?',
+      options: ['<?php', '<?', '<?=', '<? echo'], // Updated the options
+      answer: '<?php', // Updated the answer
+    },
   ];
 
-  
+  // JavaScript Questions
+const javaScriptQuestions = [
+  {
+    id: 1,
+    question: 'What is JavaScript?',
+    options: ['A programming language', 'A markup language', 'A style sheet language', 'A scripting language'],
+    answer: 'A scripting language',
+  },
+  {
+    id: 2,
+    question: 'Which keyword is used to declare variables in JavaScript?',
+    options: ['var', 'int', 'string', 'float'],
+    answer: 'var',
+  },
+  {
+    id: 3,
+    question: 'What is the result of the expression: 3 + "3" in JavaScript?',
+    options: ['6', '"33"', '33', 'Error'],
+    answer: '"33"',
+  },
+  {
+    id: 4,
+    question: 'Which built-in method removes the last element from an array and returns that element in JavaScript?',
+    options: ['pop()', 'get()', 'remove()', 'delete()'],
+    answer: 'pop()',
+  },
+  {
+    id: 5,
+    question: 'What is the output of console.log(1 + "2" + "2")?',
+    options: ['122', '5', '"122"', 'Error'],
+    answer: '"122"',
+  },
+  {
+    id: 6,
+    question: 'What will the following code output: console.log("1" - - "1")?',
+    options: ['2', '11', '10', '"11"'],
+    answer: '2',
+  },
+  {
+    id: 7,
+    question: 'Which symbol is used for comments in JavaScript?',
+    options: ['//', '/* */', '#', '--'],
+    answer: '//',
+  },
+  {
+    id: 8,
+    question: 'What is the output of console.log(3 * "3")?',
+    options: ['9', '"9"', '33', 'Error'],
+    answer: '9',
+  },
+  {
+    id: 9,
+    question: 'Which built-in method reverses the order of the elements of an array in JavaScript?',
+    options: ['reverse()', 'sort()', 'slice()', 'push()'],
+    answer: 'reverse()',
+  },
+  {
+    id: 10,
+    question: 'What is the result of the expression: 3 === "3" in JavaScript?',
+    options: ['true', 'false', 'Error', 'null'],
+    answer: 'false',
+  },
+];
 
-  const questions = id === 'JV3070' ? javaQuestions : pythonQuestions;
+
+ const questions = id === 'JV3070' ? javaQuestions : (id === 'PH3040' ? phpQuestions : (id === 'JS3090' ? javaScriptQuestions : pythonQuestions));
+
+
 
   const [selectedOptions, setSelectedOptions] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
@@ -238,7 +365,7 @@ const Questions = () => {
   return (
       <div style={styles.container}>
         <AdminDashboard />
-        <h1>{id === 'JV3070' ? 'Java Questions' : 'Python Questions'}</h1>
+        <h1>Answer the all the questions</h1>
         <div style={styles.questionsContainer}>
           {renderQuestions()}
         </div>
