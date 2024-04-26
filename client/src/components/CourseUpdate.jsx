@@ -13,6 +13,8 @@ const CourseUpdate = () => {
     coursename: '',
     description: '',
     sections: '',
+    price:'',
+    references:'',
     imgUrl: '',
     videoUrl: '',
   });
@@ -88,15 +90,6 @@ const CourseUpdate = () => {
           />
         </div>
         <div style={styles.formGroup}>
-          <label>Description:</label>
-          <textarea 
-            name="description" 
-            value={formData.description} 
-            onChange={handleChange} 
-            style={styles.textarea} 
-          />
-        </div>
-        <div style={styles.formGroup}>
           <label>Sections:</label>
           <input 
             type="text" 
@@ -104,6 +97,15 @@ const CourseUpdate = () => {
             value={formData.sections} 
             onChange={handleChange} 
             style={styles.input} 
+          />
+        </div>
+        <div style={styles.formGroup}>
+          <label>Description:</label>
+          <textarea 
+            name="description" 
+            value={formData.description} 
+            onChange={handleChange} 
+            style={styles.textarea} 
           />
         </div>
         <div style={styles.formGroup}>
@@ -124,6 +126,24 @@ const CourseUpdate = () => {
             value={formData.videoUrl} 
             onChange={handleChange} 
             style={styles.input} 
+          />
+        </div>
+        <div style={styles.formGroup}>
+          <label>Price:</label>
+          <textarea 
+            name="price" 
+            value={formData.price} 
+            onChange={handleChange} 
+            style={styles.textarea} 
+          />
+        </div>
+        <div style={styles.formGroup}>
+          <label>References:</label>
+          <textarea 
+            name="references" 
+            value={formData.references} 
+            onChange={handleChange} 
+            style={styles.textarea} 
           />
         </div>
         <button type="button" onClick={handleUpdate} style={styles.button}>Update</button>

@@ -41,7 +41,7 @@ const CourseList = () => {
                 <Card.Text style={{ color: '#6c757d', fontSize: '0.9rem' }}>
                   <strong>Course ID:</strong> {course.courseid || 'N/A'}
                   <br />
-                  <strong>Description:</strong> {course.description || 'N/A'}
+                  <strong>Price:</strong> {course.price || 'N/A'}
                   <br />
                   <strong>Sections:</strong> {course.sections || 'N/A'}
                 </Card.Text>

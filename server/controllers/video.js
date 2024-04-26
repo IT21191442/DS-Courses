@@ -2,7 +2,7 @@ import Video from "../models/Video.js";
 
 // Create a new video
 export const createVideo = async (req, res, next) => {
-  const { courseid, coursename, description, sections, imgUrl, videoUrl } = req.body;
+  const { courseid, coursename, description, sections, references, price, imgUrl, videoUrl } = req.body;
 
   if (!courseid || !coursename || !imgUrl || !videoUrl) {
     res.status(400);
@@ -15,6 +15,8 @@ export const createVideo = async (req, res, next) => {
       coursename,
       description,
       sections,
+      references,
+      price,
       imgUrl,
       videoUrl,
     });
@@ -78,7 +80,7 @@ export const getCourseById = async (req, res, next) => {
 export const updateCourseById = async (req, res, next) => {
   try {
     const courseId = req.params.id;
-    const { courseid, coursename, description, sections, imgUrl, videoUrl } = req.body;
+    const { courseid, coursename, description, sections, references, price, imgUrl, videoUrl } = req.body;
 
     // Check for required fields
     if (!courseid || !coursename || !imgUrl || !videoUrl) {
@@ -93,6 +95,8 @@ export const updateCourseById = async (req, res, next) => {
         coursename,
         description,
         sections,
+        references,
+        price,
         imgUrl,
         videoUrl,
       },

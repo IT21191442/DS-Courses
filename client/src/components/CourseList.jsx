@@ -28,7 +28,7 @@ const CourseList = () => {
   if (loading) {
     return (
       <div style={styles.loaderContainer}>
-        <AdminDashboard />
+        
         <p>Loading...</p>
       </div>
     );
@@ -45,6 +45,7 @@ const CourseList = () => {
             <p><strong>Course ID:</strong> {course.courseid || "N/A"}</p>
             <p><strong>Description:</strong> {course.description || "N/A"}</p>
             <p><strong>Sections:</strong> {course.sections || "N/A"}</p>
+            <p><strong>Price:</strong> {course.price || "N/A"}</p>
             <img
               src={course.imgUrl || "N/A"}
               alt={course.coursename || "N/A"}

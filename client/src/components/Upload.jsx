@@ -11,6 +11,8 @@ const Upload = () => {
   const [coursename, setCoursename] = useState('');
   const [description, setDescription] = useState('');
   const [sections, setSections] = useState('');
+  const [references, setReferences] = useState('');
+  const [price, setPrice] = useState('');
   const [img, setImg] = useState(null);
   const [video, setVideo] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -52,6 +54,8 @@ const Upload = () => {
         coursename,
         description,
         sections,
+        references,
+        price,
         imgUrl,
         videoUrl
       });
@@ -61,6 +65,8 @@ const Upload = () => {
       setCoursename('');
       setDescription('');
       setSections('');
+      setReferences('');
+      setPrice('');
       setImg(null);
       setVideo(null);
 
@@ -118,6 +124,26 @@ const Upload = () => {
               type="text"
               value={sections}
               onChange={(e) => setSections(e.target.value)}
+              style={styles.input}
+            />
+          </div>
+
+          <div style={styles.formGroup}>
+            <label htmlFor="references" style={styles.label}>References:</label>
+            <input
+              type="text"
+              value={references}
+              onChange={(e) => setReferences(e.target.value)}
+              style={styles.input}
+            />
+          </div>
+
+          <div style={styles.formGroup}>
+            <label htmlFor="price" style={styles.label}>Course Price:</label>
+            <input
+              type="text"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
               style={styles.input}
             />
           </div>

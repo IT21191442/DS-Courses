@@ -189,23 +189,79 @@ const Questions = () => {
     }
   };
 
+  const calculateScore = () => {
+    let correctCount = 0;
+    let wrongCount = 0;
+
+    questions.forEach((question) => {
+      const selectedOption = selectedOptions[question.id];
+      if (selectedOption === question.answer) {
+        correctCount++;
+      } else {
+        wrongCount++;
+      }
+    });
+
+    const totalQuestions = questions.length;
+    const score = (correctCount / totalQuestions) * 100;
+
+    return {
+      correctCount,
+      wrongCount,
+      totalQuestions,
+      score,
+    };
+  };
+
+  const handleSubmit = () => {
+    // Calculate the score when the Submit button is clicked
+    const { correctCount, wrongCount, totalQuestions, score } = calculateScore();
+    setScoreDetails({
+      correctCount,
+      wrongCount,
+      totalQuestions,
+      score,
+    });
+  };
+
+  // State to store the score details
+  const [scoreDetails, setScoreDetails] = useState({
+    correctCount: 0,
+    wrongCount: 0,
+    totalQuestions: 0,
+    score: 0,
+  });
+
+  const { correctCount, wrongCount, totalQuestions, score } = calculateScore();
+
+
   return (
-    <div style={styles.container}>
-    <AdminDashboard />
-      <h1>{id === 'JV3070' ? 'Java Questions' : 'Python Questions'}</h1>
-      <div style={styles.questionsContainer}>
-        {renderQuestions()}
+      <div style={styles.container}>
+        <AdminDashboard />
+        <h1>{id === 'JV3070' ? 'Java Questions' : 'Python Questions'}</h1>
+        <div style={styles.questionsContainer}>
+          {renderQuestions()}
+        </div>
+        <div style={styles.pagination}>
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
+          <span>{currentPage} / {totalPages}</span>
+          <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
+          {currentPage === totalPages && (
+            <button onClick={handleSubmit} style={styles.submitButton}>Submit</button>
+          )}
+        </div>
+        {scoreDetails.score !== 0 && (
+          <div style={styles.resultContainer}>
+            <h2>Result</h2>
+            <p>Total Questions: {scoreDetails.totalQuestions}</p>
+            <p>Correct Answers: {scoreDetails.correctCount}</p>
+            <p>Wrong Answers: {scoreDetails.wrongCount}</p>
+            <p>Total Score: {scoreDetails.score.toFixed(2)}%</p>
+          </div>
+        )}
       </div>
-      <div style={styles.pagination}>
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
-        <span>{currentPage} / {totalPages}</span>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
-        {/* <button onClick={() => console.log(selectedOptions)}>Submit</button> */}
-      </div>
-      
-    </div>
-  );
-};
+    );
+  };
 
 // Inline styles
 const styles = {
@@ -239,6 +295,17 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  resultContainer: {
+    marginTop: '30px',
+    padding: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '5px',
+    width: '80%',
+    maxWidth: '800px',
+  },
+  submitButton: {
+    marginLeft: '20px',
   },
 };
 

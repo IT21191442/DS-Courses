@@ -19,14 +19,25 @@ const videoSchema = new mongoose.Schema(
     sections: {
       type: String,
     },
+
+    references: {
+      type: String,
+    },
+
+    price: {
+      type: String,
+    },
+
     imgUrl: {
       type: String,
       required: true,
     },
+    
     videoUrl: {
       type: String,
       required: true,
     },
+
   },
   {
     timestamps: true,
