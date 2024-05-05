@@ -1,37 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-  Route,
-} from "react-router-dom";
-import Upload from './components/Upload';
-import CourseListAdmin from './components/CourseListAdmin';
-import CourseDetails from './components/CourseDetails';
-import CourseUpdate from './components/CourseUpdate';
-import AdminDashboard from './components/AdminDashboard'
-import QuizHome from './components/QuizeHome';
-import Questions from './components/Questions';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route path="upload" element={<Upload />} />
-      <Route path="/getAllCourses" element={<CourseListAdmin />} />
-      <Route path="/course/:id" element={<CourseDetails />} />
-      <Route path="/updateCourse/:id" element={<CourseUpdate />} />
-      <Route path="/AdminDashboard" element={<AdminDashboard />} />
-      <Route path="/quizeHome/:id" element={<QuizHome />} />
-      <Route path="/questions/:id" element={<Questions />} />
-    </Route>
-  )
-);
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <RouterProvider router={router} />
+ReactDOM.render(
+  <Router>
+    <App />
+  </Router>,
+  document.getElementById('root')
 );
